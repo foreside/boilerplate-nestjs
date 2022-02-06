@@ -19,9 +19,9 @@ export class AuthenticateController {
   ) {}
 
   /**
-   * @name Authentauthenticate api it returns a signed JWTicateUser
+   * @name AuthenticateUser
    * @description Authenticate a User with a user and password
-   * @returns boolean
+   * @returns booleanauthenticate api it returns a signed JWT
    */
   @Post()
   @HttpCode(200)
