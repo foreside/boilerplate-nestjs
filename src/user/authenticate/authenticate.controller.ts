@@ -19,7 +19,7 @@ export class AuthenticateController {
   ) {}
 
   /**
-   * @name AuthenticateUser
+   * @name Authentauthenticate api it returns a signed JWTicateUser
    * @description Authenticate a User with a user and password
    * @returns boolean
    */
