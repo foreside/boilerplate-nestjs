@@ -15,7 +15,7 @@ export class initialDatabaseSchemaMigration1641462638160
       `CREATE UNIQUE INDEX "IDX_EMAIL" ON "user" ("email") `,
     );
     await queryRunner.query(
-      `CREATE TABLE "password" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "correlation_id" character varying NOT NULL, "password" character varying NOT NULL, "hash_algorithm" "public"."password_hash_algorithm_enum" NOT NULL DEFAULT 'argon2id', "status" "public"."password_status_enum" NOT NULL DEFAULT 'inactive', "options" text NOT NULL, "archived" boolean NOT NULL DEFAULT false, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "record_version" integer NOT NULL, "user_id" uuid, CONSTRAINT "PK_cbeb55948781be9257f44febfa0" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "password" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "correlation_id" character varying NOT NULL, "password" character varying NOT NULL, "hash_algorithm" character varying  NOT NULL DEFAULT 'argon2id', "status" character varying NOT NULL DEFAULT 'inactive', "options" text NOT NULL, "archived" boolean NOT NULL DEFAULT false, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "record_version" integer NOT NULL, "user_id" uuid, CONSTRAINT "PK_cbeb55948781be9257f44febfa0" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `ALTER TABLE "password" ADD CONSTRAINT "FK_4cd77c9b2e2522ee9d3671b3bc1" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION`,

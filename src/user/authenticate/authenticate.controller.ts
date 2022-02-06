@@ -1,7 +1,15 @@
 import { AuthenticateService } from './authenticate.service';
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { AuthenticateUserByPasswordRequestDTO } from './authenticate.dto';
 import { ConfigService } from '@nestjs/config';
+import { LoginStatus } from './dto/login-status.interface';
 
 @Controller('authenticate')
 export class AuthenticateController {
@@ -19,20 +27,20 @@ export class AuthenticateController {
   @HttpCode(200)
   async AuthenticateUser(
     @Body() body: AuthenticateUserByPasswordRequestDTO,
-  ): Promise<boolean> {
+  ): Promise<LoginStatus> {
     const { username, password } = body;
     try {
       const token = await this.authenticateService.authenticateUser(
         username,
         password,
       );
-
-      console.log('token: ', token);
-
-      return true;
+      return { accessToken: token, username };
     } catch (error) {
       console.log('AuthenticateUser Error: ', error);
-      return false;
+      throw new HttpException(
+        'AuthenticateUser Error:' + error,
+        HttpStatus.UNAUTHORIZED,
+      );
     }
   }
 }
