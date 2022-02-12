@@ -7,6 +7,7 @@ import { PasswordModule } from './password/password.module';
 import { HealthcheckModule } from './healthcheck/healthcheck.module';
 import configuration from './config/configuration';
 import { AuthenticateModule } from './user/authenticate/authenticate.module';
+import { PasswordArchiveModule } from './password-archive/password-archive.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,6 +25,7 @@ import { AuthenticateModule } from './user/authenticate/authenticate.module';
         children: [],
       },
     ]),
+    PasswordArchiveModule,
   ],
   controllers: [],
   providers: [],
